@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * ARQUIVO: App.tsx
+ *
+ * PARA QUE SERVE?
+ * É o ponto de entrada do app: o primeiro componente desenhado. Ele só prepara
+ * o ambiente e carrega a navegação; todo o resto fica dentro de src/.
+ *
+ * - SafeAreaProvider: mede as "áreas seguras" do aparelho (entalhe, barra de
+ *   status, barra de gestos) e repassa essas medidas para as telas, que usam o
+ *   gancho useSafeAreaInsets para não desenhar conteúdo embaixo delas.
+ * - StatusBar: define a cor dos ícones da barra de status ("dark" = ícones escuros,
+ *   porque o fundo do nosso cabeçalho é claro).
+ */
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import NavegacaoPrincipal from "./src/navegacao/NavegacaoPrincipal";
+import { configurarExibicaoNotificacoes } from "./src/servicos/servicoNotificacoes";
 
+// Configuração feita UMA vez, quando o app inicia (fora do componente, para não
+// repetir a cada vez que o App for desenhado de novo).
+configurarExibicaoNotificacoes();
+
+/**
+ * Recebe: nada.
+ * Devolve: o app inteiro: o provedor de área segura, a navegação e a barra de status.
+ */
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <NavegacaoPrincipal />
+      <StatusBar style="dark" />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -1,25 +1,48 @@
 {
   "expo": {
-    "name": "agenda-do-estudante",
+    "name": "Agenda do Estudante",
     "slug": "agenda-do-estudante",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "br.edu.agendadoestudante",
+      "buildNumber": "1"
     },
     "android": {
+      "package": "br.edu.agendadoestudante",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
+      "permissions": [
+        "android.permission.POST_NOTIFICATIONS"
+      ],
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "color": "#4F46E5",
+          "defaultChannel": "lembretes-eventos"
+        }
+      ],
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "ab2dc185-51ec-4ebb-8991-59bdb28d6184"
+      }
+    },
+    "owner": "gabrielfagundesdeoliveira"
   }
 }
